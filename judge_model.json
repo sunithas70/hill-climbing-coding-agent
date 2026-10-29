@@ -1,0 +1,12 @@
+{
+  "score": 100,
+  "verdict": "pass",
+  "criteria": {
+    "execution_tool": 40,
+    "verification": 20,
+    "root_cause": 20,
+    "edge_cases": 20
+  },
+  "auto_fail": null,
+  "rationale": "Nothing critical is missing; the submission carries a full pass across all four dimensions. First, `_run_command` and the `run_command(command, stdin_data)` tool (lines 103-131, 187-189) execute shell and Python commands directly inside the task sandbox with full `stdin`, `stdout`, `stderr`, and `returncode` capture. Second, `list_files` and `search_files` (lines 52-100, 171-177) paired with Section 1 of `SYSTEM_INSTRUCTION` (lines 136-141) require exploring the full package and tracing upstream parsing/loading helpers before editing while preserving return types. Third, Section 2 (lines 143-158) systematically enumerates boundary conditions and concrete traps including descending ranges (`9-7 -> 9 8 7`), `Decimal` `ROUND_HALF_UP` money/length rounding (`5.005 -> 5.01`) with `Decimal('0')` sum initialization, safe trailing-zero trimming, empty-stdin handling, and strict `stderr` exit codes. Finally, Section 3 (lines 160-166) enforces `write_file` persistence and iterative `run_command` verification across all examples and edge cases before finishing."
+}

@@ -1,0 +1,13 @@
+# Ignore all home-directory dot-folders and system files except explicitly tracked lab files
+.*
+!.gitignore
+!.agents/
+!.agents/**
+
+# Virtual environment & Python cache
+.venv/
+__pycache__/
+*.pyc
+
+# Evaluation run directories (large trajectory artifacts)
+runs/

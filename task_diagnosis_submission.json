@@ -1,0 +1,13 @@
+{
+  "task": "invoice_report",
+  "observed_mode": "Mode A — total stays 124 / cents still lost / the fix didn't take",
+  "description": "For invoice_report, I observed that the agent only read and edited src/invoices/report.py (converting round(sum(amounts), 2) to Decimal) and wrote a reproduce_issue.py script that it could only read back with read_file, while never opening src/invoices/load.py where parse_amount truncates cents via int(float(raw)); the coding agent failed because it lacked directory-listing/code-search tools to discover upstream helper modules beyond the file named in the prompt, over-trusted the prompt's symptom framing without tracing the data flow, and lacked a code execution tool and verification loop to run its reproduction script or test whether its change actually fixed the total of 124.",
+  "score": 100,
+  "criteria": {
+    "capability_gap_and_mechanism": 60,
+    "specificity": 25,
+    "consequence_or_remediation": 15
+  },
+  "verdict": "accepted",
+  "timestamp": "2026-10-29T10:22:35Z"
+}
